@@ -1,5 +1,5 @@
 Rails.application.routes.draw do  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html#
+ # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html#
  #get 'books' =>'books#index',as:'book_index'
  #post 'books' => 'books#create'
  #get 'books/:id' =>'books#show',as:'book_show'
