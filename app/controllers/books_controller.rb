@@ -12,7 +12,8 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     # 1. データをデータベースに保存するためのsaveメソッド実行
    if @book.save
-     redirect_to book_show_path(book.id)
+     flash[:notice] = "Book was successfully created."
+     redirect_to book_show_path(@book.id)
    else
      render:index
    end
@@ -21,7 +22,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    # ３. 詳細画面へリダイレクト
+    flash[:notice] = "Book was successfully destroyed.."
    redirect_to book_index_path
   end
 
@@ -41,6 +42,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
+        flash[:notice] = "Book was successfully updated."
         redirect_to book_show_path(@book.id)#showのインスタンス変数を呼び出してる？
     else
         render:edit
