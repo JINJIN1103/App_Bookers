@@ -40,9 +40,8 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
-    book = Book.find(params[:id])
-    if book.update(book_params)
-        redirect_to book_update_path(book.id)
+    if @book.update(book_params)
+        redirect_to book_show_path(@book.id)#showのインスタンス変数を呼び出してる？
     else
         render:edit
     end
