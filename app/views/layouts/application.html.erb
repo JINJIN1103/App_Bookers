@@ -10,7 +10,12 @@
   </head>
 
   <body>
-  <%= flash[:notice] %>
+    <% flash.each do |key, value| %>
+      <p id=<%= key %>>
+        <%= value %>
+      </p>
+    <% end %>
+    
   <%= yield %>
   </body>
 </html>

@@ -23,21 +23,55 @@
 
 <!-- 新規投稿部分 -->
 <h2>New book</h2>
-
 <!--エラー時に表示-->
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>errors prohibited this book from being saved:
-  <%  @book.errors.full_messages.each do |message| %>
- <div class="error_explanation"><%= message %></div>
-  <% end %>
-<% end %>
 
+
+ <% if @book.errors.any? %>
+   <div id=error_explanation>
+
+    <h2>
+     <%= @book.errors.count %> errors prohibited this book from being saved:
+    </h2>
+
+    <ul>
+     <%  @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %>
+    </ul>
+<% end %>
+    </div>
 
 <div class="form"><%= form_with model: @book, url:'/books', local:true do |f| %>
-  <label>Title</label>
-   <div class="field"><%= f.text_field :title %></div>
-  <label>Body</label>
-   <div class="field"><%= f.text_area :body %></div>
-   <div class="actions"><%= f.submit 'Create Book' %></div>
+
+  <div class="field">
+    
+   <% if @book.errors.any? %>
+    <div class ="field_with_errors">
+   <% end %>
+   
+     <label>Title</label>
+   
+   <% if @book.errors.any? %>
+    </div>
+   <% end %>
+  
+   <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+   <% if @book.errors.any? %>
+   <div class ="field_with_errors">
+   <% end %>
+    <label>Body</label>
+    
+   <% if @book.errors.any? %>
+    </div>
+   <% end %>
+    
+     <%= f.text_area :body %>
+
+  </div>
+
+  <div class="actions"><%= f.submit 'Create Book' %></div>
 <% end %>
 </div>
